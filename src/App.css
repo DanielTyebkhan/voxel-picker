@@ -5,6 +5,8 @@
 }
 
 .voxel {
-  background-color: green;
+  border:2px solid red;
+  height: 6rem;
+  width: 6rem;
 }
 
