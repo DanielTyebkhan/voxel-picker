@@ -20,9 +20,9 @@
 }
 
 #selected {
-  background-color: #1F2833;
+  background-color: #45A29E;
 }
 
 #selected:hover {
-  background-color: #45A29E;
+  background-color: #1F2833;
 }

@@ -21,7 +21,7 @@ class Voxel extends React.Component {
   render() {
     return (
       <button className="voxel" id={this.state.selected ? "selected" : null} onClick={() => this.setState({ selected: !this.state.selected })}>
-        { this.props.value}
+        ({ this.props.x + ', ' + this.props.y})
       </button >
     )
   }
@@ -35,26 +35,25 @@ class Grid extends React.Component {
     }
   }
 
-  renderVoxel(i) {
+  renderVoxel(x, y) {
     return (
-      <Voxel value={i} />
+      <Voxel x={x} y={y} />
     )
-  }
-
-  onVoxelClick() {
-
   }
 
   render() {
     const toShow = this.state.voxels.slice();
+    var yVal = this.props.size - 1;
     for (var i = 0; i < this.props.size ** 2; i += this.props.size) {
       var row = new Array(this.props.size);
+      var xVal = 0;
       for (var j = 0; j < this.props.size; j++) {
-        row.push(<Voxel value={j} />);
+        row.push(this.renderVoxel(xVal, yVal));
+        xVal += 1;
       }
+      yVal -= 1;
       toShow.push(row)
     }
-    console.log(toShow);
     return (
       toShow.map((number) => <div>{number}</div>)
     );
