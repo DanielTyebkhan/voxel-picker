@@ -20,7 +20,7 @@ class Voxel extends React.Component {
 
   render() {
     return (
-      <button className="voxel" onClick={() => alert('hi')}>
+      <button className="voxel" id={this.state.selected ? "selected" : null} onClick={() => this.setState({ selected: !this.state.selected })}>
         { this.props.value}
       </button >
     )
