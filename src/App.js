@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <Grid size={5} />
+      <Picker />
     </div>
   );
 }
@@ -50,6 +50,20 @@ class Grid extends React.Component {
     }
     return (
       toShow.map((number) => <div>{number}</div>)
+    );
+  }
+}
+
+class Picker extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <Grid size={5} />
+      </div>
     );
   }
 }
