@@ -35,12 +35,6 @@ class Grid extends React.Component {
     }
   }
 
-  renderVoxel(x, y) {
-    return (
-      <Voxel x={x} y={y} />
-    )
-  }
-
   render() {
     const toShow = this.state.voxels.slice();
     var yVal = this.props.size - 1;
@@ -48,7 +42,7 @@ class Grid extends React.Component {
       var row = new Array(this.props.size);
       var xVal = 0;
       for (var j = 0; j < this.props.size; j++) {
-        row.push(this.renderVoxel(xVal, yVal));
+        row.push(<Voxel x={xVal} y={yVal} />);
         xVal += 1;
       }
       yVal -= 1;
