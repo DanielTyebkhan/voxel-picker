@@ -1,17 +1,17 @@
 .App {
   text-align: center;
-  background-color: #282c34;
+  background-color: #0B0C10;
   min-height: 100vh;
 }
 
 .voxel {
-  border:2px solid #282c34;
+  border:2px solid #0B0C10;
   height: 6rem;
   width: 6rem;
 }
 
 .voxel:hover {
-  background-color: grey;
+  background-color: #C5C6C7;
 }
 
 .voxel:focus {
@@ -20,5 +20,9 @@
 }
 
 #selected {
-  background-color: green;
+  background-color: #1F2833;
+}
+
+#selected:hover {
+  background-color: #45A29E;
 }
