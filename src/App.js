@@ -31,6 +31,10 @@ class Grid extends React.Component {
     )
   }
 
+  onVoxelClick() {
+
+  }
+
   render() {
     const toShow = this.state.voxels.slice();
     for (var i = 0; i < this.props.size ** 2; i += this.props.size) {

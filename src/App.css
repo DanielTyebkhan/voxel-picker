@@ -5,8 +5,16 @@
 }
 
 .voxel {
-  border:2px solid red;
+  border:2px solid black;
   height: 6rem;
   width: 6rem;
 }
 
+.voxel:hover {
+  background-color: grey;
+}
+
+.voxel:focus {
+  outline: none;
+  box-shadow: none;
+}
