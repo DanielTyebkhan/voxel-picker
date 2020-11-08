@@ -9,12 +9,22 @@ function App() {
   );
 }
 
-function Voxel(props) {
-  return (
-    <button className="voxel" onClick={() => alert('hi')}>
-      { props.value}
-    </button>
-  )
+class Voxel extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selected: false,
+    }
+  }
+
+  render() {
+    return (
+      <button className="voxel" onClick={() => alert('hi')}>
+        { this.props.value}
+      </button >
+    )
+  }
 }
 
 class Grid extends React.Component {
