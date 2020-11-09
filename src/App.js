@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 
 function App() {
@@ -58,8 +58,17 @@ class Picker extends React.Component {
     this.setState({ voxels: toShow })
   }
 
-  handleClick(x, y, selected) {
-    console.log(x + ', ' + y)
+  handleClick(voxObj) {
+    const voxels = this.state.voxels.slice();
+    for (var i = 0; i < voxels.length; i++) {
+      for (var j = 0; j < voxels[i].length; j++) {
+        var curVox = voxels[i][j]
+        if (curVox === voxObj) {
+          curVox.selected = !curVox.selected;
+        }
+      }
+    }
+    this.setState({ voxels: voxels });
   }
 
   render() {
@@ -72,13 +81,12 @@ class Picker extends React.Component {
   }
 
   renderVoxel(voxObj) {
-    console.log(voxObj)
     return (
       <Voxel
         x={voxObj.x}
         y={voxObj.y}
-        id={voxObj.selected}
-        onClick={() => this.handleClick(voxObj.x, voxObj.y, voxObj.selected)}
+        selected={voxObj.selected}
+        onClick={() => this.handleClick(voxObj)}
       />
     )
   }
@@ -86,7 +94,6 @@ class Picker extends React.Component {
   renderGrid() {
     return (
       <div className="grid">
-        console.log(this.state.voxels)
         { this.state.voxels.map((row) =>
           <div className="row">
             {
