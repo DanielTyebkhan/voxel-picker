@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
@@ -9,51 +9,19 @@ function App() {
   );
 }
 
-class Voxel extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selected: false,
-    }
-  }
-
-  render() {
-    return (
-      <button className="voxel" id={this.state.selected ? "selected" : null} onClick={() => this.setState({ selected: !this.state.selected })}>
-        ({ this.props.x + ', ' + this.props.y})
-      </button >
-    )
-  }
-
-  isSelected = () => this.state.selected;
-
-  getCoordinates = () => [this.props.x, this.props.y];
+function Voxel(props) {
+  return (
+    <button className="voxel" id={props.selected ? "selected" : null} onClick={props.onClick}>
+      ({ props.x + ', ' + props.y})
+    </button>
+  )
 }
 
-class Grid extends React.Component {
-  render() {
-    return (
-      <div className="grid">
-        { this.props.voxels.map((row) =>
-          <div className="row">
-            {
-              row.map((coordinate) =>
-                <Voxel x={coordinate[0]} y={coordinate[1]} />
-              )
-            }
-          </div>
-        )}
-      </div>
-    );
-  }
-}
 
 function OutputField(props) {
   return (
     <div className="output">{props.coordinates}</div>
   );
-
 }
 
 class Picker extends React.Component {
@@ -63,6 +31,7 @@ class Picker extends React.Component {
     this.state = {
       size: 7,
       voxels: [],
+      selected: [],
     };
   }
 
@@ -74,7 +43,13 @@ class Picker extends React.Component {
       var row = [];
       var xVal = 0;
       for (var j = 0; j < size; j++) {
-        row.push([xVal, yVal]);
+        const cell = {
+          x: xVal,
+          y: yVal,
+          id: xVal,
+          selected: false,
+        }
+        row.push(cell);
         xVal += 1;
       }
       yVal -= 1;
@@ -83,11 +58,44 @@ class Picker extends React.Component {
     this.setState({ voxels: toShow })
   }
 
+  handleClick(x, y, selected) {
+    console.log(x + ', ' + y)
+  }
+
   render() {
     return (
       <div className="picker">
         <OutputField />
-        <Grid size={this.state.size} voxels={this.state.voxels} />
+        {this.renderGrid()}
+      </div>
+    );
+  }
+
+  renderVoxel(voxObj) {
+    console.log(voxObj)
+    return (
+      <Voxel
+        x={voxObj.x}
+        y={voxObj.y}
+        id={voxObj.selected}
+        onClick={() => this.handleClick(voxObj.x, voxObj.y, voxObj.selected)}
+      />
+    )
+  }
+
+  renderGrid() {
+    return (
+      <div className="grid">
+        console.log(this.state.voxels)
+        { this.state.voxels.map((row) =>
+          <div className="row">
+            {
+              row.map((coordinate) =>
+                this.renderVoxel(coordinate)
+              )
+            }
+          </div>
+        )}
       </div>
     );
   }
