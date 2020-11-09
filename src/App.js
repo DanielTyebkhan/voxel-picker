@@ -62,26 +62,25 @@ class Picker extends React.Component {
     super(props);
     this.state = {
       size: 7,
-      voxels: new Array(),
+      voxels: [],
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const size = this.state.size;
     const toShow = new Array(0);
     var yVal = size - 1;
     for (var i = 0; i < size ** 2; i += size) {
-      var row = new Array(0);
+      var row = [];
       var xVal = 0;
       for (var j = 0; j < size; j++) {
-        row.push(new Array(xVal, yVal));
+        row.push([xVal, yVal]);
         xVal += 1;
       }
       yVal -= 1;
       toShow.push(row)
     }
-    console.log(toShow)
-    this.setState({ voxels: toShow }, console.log('state'))
+    this.setState({ voxels: toShow })
   }
 
   render() {
