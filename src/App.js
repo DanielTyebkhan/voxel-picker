@@ -32,41 +32,10 @@ class Voxel extends React.Component {
 }
 
 class Grid extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      voxels: new Array(this.props.size ** 2).fill(null),
-    }
-  }
-
-  getSelections() {
-    const coordinates = new Array(this.props.size);
-    this.state.voxels.foreach(function (voxel) {
-      if (voxel.isSelected) {
-        coordinates.push(voxel.getCoordinates);
-      }
-    });
-    console.log(coordinates)
-    return coordinates;
-  }
-
   render() {
-    const toShow = new Array(0);
-    var yVal = this.props.size - 1;
-    for (var i = 0; i < this.props.size ** 2; i += this.props.size) {
-      var row = new Array(0);
-      var xVal = 0;
-      for (var j = 0; j < this.props.size; j++) {
-        row.push(new Array(xVal, yVal));
-        console.log(row)
-        xVal += 1;
-      }
-      yVal -= 1;
-      toShow.push(row)
-    }
     return (
       <div className="grid">
-        { toShow.map((row) =>
+        { this.props.voxels.map((row) =>
           <div className="row">
             {
               row.map((coordinate) =>
@@ -88,11 +57,38 @@ function OutputField(props) {
 }
 
 class Picker extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      size: 7,
+      voxels: new Array(),
+    };
+  }
+
+  componentWillMount() {
+    const size = this.state.size;
+    const toShow = new Array(0);
+    var yVal = size - 1;
+    for (var i = 0; i < size ** 2; i += size) {
+      var row = new Array(0);
+      var xVal = 0;
+      for (var j = 0; j < size; j++) {
+        row.push(new Array(xVal, yVal));
+        xVal += 1;
+      }
+      yVal -= 1;
+      toShow.push(row)
+    }
+    console.log(toShow)
+    this.setState({ voxels: toShow }, console.log('state'))
+  }
+
   render() {
     return (
       <div className="picker">
         <OutputField />
-        <Grid size={7} />
+        <Grid size={this.state.size} voxels={this.state.voxels} />
       </div>
     );
   }
