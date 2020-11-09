@@ -17,6 +17,14 @@ function Voxel(props) {
   )
 }
 
+function ResetButton(props) {
+  return (
+    <button className="reset" onClick={props.onClick}>
+      Reset Grid
+    </button>
+  )
+}
+
 
 function OutputField(props) {
   return (
@@ -90,10 +98,23 @@ class Picker extends React.Component {
     this.setState({ voxels: voxels });
   }
 
+  resetGrid() {
+    const voxels = this.state.voxels;
+    voxels.forEach(function(row) {
+      row.forEach(function(voxel) {
+        voxel.selected = false;
+      });
+    });
+    this.setState({voxels: voxels});
+  }
+
   render() {
     return (
       <div className="picker">
+        <div>
         <OutputField coordinates={this.getSelected()} />
+        <ResetButton onClick={() => this.resetGrid()}/>
+        </div>
         {this.renderGrid()}
       </div>
     );
