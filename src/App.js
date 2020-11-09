@@ -20,7 +20,11 @@ function Voxel(props) {
 
 function OutputField(props) {
   return (
-    <div className="output">{props.coordinates}</div>
+    <div className="output">
+      {props.coordinates.map((coordinate) => {
+        <p> {coordinate.x + ', ' + coordinate.y} </p>
+      })}
+    </div>
   );
 }
 
@@ -31,8 +35,20 @@ class Picker extends React.Component {
     this.state = {
       size: 7,
       voxels: [],
-      selected: [],
     };
+  }
+
+  getSelected() {
+    const selected = [];
+    this.state.voxels.forEach(function (row) {
+      row.forEach(function (voxel) {
+        if (voxel.selected) {
+          selected.push(voxel);
+        }
+      })
+    })
+    console.log(selected);
+    return selected;
   }
 
   componentDidMount() {
@@ -74,7 +90,7 @@ class Picker extends React.Component {
   render() {
     return (
       <div className="picker">
-        <OutputField />
+        <OutputField coordinates={this.getSelected()} />
         {this.renderGrid()}
       </div>
     );
