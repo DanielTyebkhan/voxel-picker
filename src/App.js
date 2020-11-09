@@ -9,6 +9,7 @@ function App() {
   );
 }
 
+
 class Voxel extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +26,10 @@ class Voxel extends React.Component {
       </button >
     )
   }
+
+  isSelected = () => this.state.selected;
+
+  getCoordinates = () => [this.props.x, this.props.y];
 }
 
 class Grid extends React.Component {
@@ -33,6 +38,17 @@ class Grid extends React.Component {
     this.state = {
       voxels: new Array(this.props.size ** 2).fill(null),
     }
+  }
+
+  getSelections() {
+    const coordinates = new Array(this.props.size);
+    this.state.voxels.foreach(function (voxel) {
+      if (voxel.isSelected) {
+        coordinates.push(voxel.getCoordinates);
+      }
+    });
+    console.log(coordinates)
+    return coordinates;
   }
 
   render() {
@@ -49,20 +65,27 @@ class Grid extends React.Component {
       toShow.push(row)
     }
     return (
-      toShow.map((number) => <div>{number}</div>)
+      <div className="grid">
+        { toShow.map((number) => <div className="row">{number}</div>)}
+      </div>
     );
   }
 }
 
-class Picker extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+function OutputField(props) {
+  console.log("logging")
+  return (
+    <div className="output">{props.coordinates}</div>
+  );
 
+}
+
+class Picker extends React.Component {
   render() {
     return (
-      <div>
-        <Grid size={5} />
+      <div className="picker">
+        <OutputField />
+        <Grid size={7} />
       </div>
     );
   }

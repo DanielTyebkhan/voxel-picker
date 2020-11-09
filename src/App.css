@@ -1,10 +1,10 @@
 .App {
-  text-align: center;
   background-color: #0B0C10;
   min-height: 100vh;
 }
 
 .voxel {
+  background-color: rgb(241, 235, 235);
   border:2px solid #0B0C10;
   height: 6rem;
   width: 6rem;
@@ -17,6 +17,23 @@
 .voxel:focus {
   outline: none;
   box-shadow: none;
+}
+
+.output {
+  background-color:rgb(241, 235, 235);
+  border:2px solid #0B0C10;
+  width: 6rem;
+}
+
+.picker {
+  display: flex;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  min-width: 42rem;
 }
 
 #selected {
