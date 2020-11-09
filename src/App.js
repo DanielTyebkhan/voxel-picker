@@ -9,7 +9,6 @@ function App() {
   );
 }
 
-
 class Voxel extends React.Component {
   constructor(props) {
     super(props);
@@ -52,13 +51,14 @@ class Grid extends React.Component {
   }
 
   render() {
-    const toShow = this.state.voxels.slice();
+    const toShow = new Array(0);
     var yVal = this.props.size - 1;
     for (var i = 0; i < this.props.size ** 2; i += this.props.size) {
-      var row = new Array(this.props.size);
+      var row = new Array(0);
       var xVal = 0;
       for (var j = 0; j < this.props.size; j++) {
-        row.push(<Voxel x={xVal} y={yVal} />);
+        row.push(new Array(xVal, yVal));
+        console.log(row)
         xVal += 1;
       }
       yVal -= 1;
@@ -66,14 +66,21 @@ class Grid extends React.Component {
     }
     return (
       <div className="grid">
-        { toShow.map((number) => <div className="row">{number}</div>)}
+        { toShow.map((row) =>
+          <div className="row">
+            {
+              row.map((coordinate) =>
+                <Voxel x={coordinate[0]} y={coordinate[1]} />
+              )
+            }
+          </div>
+        )}
       </div>
     );
   }
 }
 
 function OutputField(props) {
-  console.log("logging")
   return (
     <div className="output">{props.coordinates}</div>
   );
