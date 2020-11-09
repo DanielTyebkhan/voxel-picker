@@ -21,10 +21,14 @@ function Voxel(props) {
 function OutputField(props) {
   return (
     <div className="output">
-      {props.coordinates.map((coordinate) => {
-        <p> {coordinate.x + ', ' + coordinate.y} </p>
-      })}
-    </div>
+      <ul>
+        {props.coordinates.map((coordinate) =>
+          <li>
+            {coordinate.x + ',' + coordinate.y}
+          </li>
+        )}
+      </ul>
+    </div >
   );
 }
 
@@ -47,7 +51,6 @@ class Picker extends React.Component {
         }
       })
     })
-    console.log(selected);
     return selected;
   }
 
