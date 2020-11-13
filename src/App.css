@@ -27,6 +27,9 @@
   background-color:rgb(241, 235, 235);
   border:2px solid #0B0C10;
   width: 6rem;
+  min-height: 40rem;
+  max-height: 40rem;
+  min-width: 7.35rem;
 }
 
 .picker {
@@ -38,6 +41,10 @@
 
 .row {
   min-width: 42rem;
+}
+
+#coordinates {
+  text-align: center;
 }
 
 #selected {

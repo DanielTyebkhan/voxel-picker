@@ -29,6 +29,7 @@ function ResetButton(props) {
 function OutputField(props) {
   return (
     <div className="output">
+      <h3 id="coordinates">Coordinates</h3>
       <ul>
         {props.coordinates.map((coordinate) =>
           <li>
