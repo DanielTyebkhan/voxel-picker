@@ -22,7 +22,15 @@ function ResetButton(props) {
     <button className="reset" onClick={props.onClick}>
       Reset Grid
     </button>
-  )
+  );
+}
+
+function DownloadButton(props) {
+  return (
+    <button className="reset" onClick={props.onClick}>
+      Download
+    </button>
+  );
 }
 
 
@@ -51,7 +59,7 @@ class Picker extends React.Component {
     };
   }
 
-  getSelected() {
+  getSelected = () => {
     const selected = [];
     this.state.voxels.forEach(function (row) {
       row.forEach(function (voxel) {
@@ -61,6 +69,12 @@ class Picker extends React.Component {
       })
     })
     return selected;
+  }
+
+  downloadFile() {
+    console.log(this.getSelected());
+    //const blob = new Blob(this.getSelected.toString());
+
   }
 
   componentDidMount() {
@@ -114,6 +128,7 @@ class Picker extends React.Component {
       <div className="picker">
         <div>
         <OutputField coordinates={this.getSelected()} />
+        <DownloadButton onClick={() => this.downloadFile()} />
         <ResetButton onClick={() => this.resetGrid()}/>
         </div>
         {this.renderGrid()}
