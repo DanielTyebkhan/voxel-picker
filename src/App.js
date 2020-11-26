@@ -82,7 +82,7 @@ class Picker extends React.Component {
     const element = document.createElement('a');
     const file = new Blob([coordinates], {type: 'text.plain'});
     element.href = URL.createObjectURL(file);
-    element.download = 'file.txt';
+    element.download = prompt('Enter File Name') + '.txt';
     document.body.appendChild(element);
     element.click();
   }
