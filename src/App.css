@@ -27,9 +27,18 @@
   background-color:rgb(241, 235, 235);
   border:2px solid #0B0C10;
   width: 6rem;
-  min-height: 40rem;
-  max-height: 40rem;
+  min-height: 38.25rem;
+  max-height: 38.25rem;
   min-width: 7.35rem;
+}
+
+.panel {
+  max-width: 7.5rem;
+}
+
+.panel-button {
+  min-width: 7.5rem;
+  max-width: 7.5rem;
 }
 
 .picker {

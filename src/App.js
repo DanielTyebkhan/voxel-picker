@@ -21,7 +21,7 @@ function VoxelButton(props) {
 
 function ResetButton(props) {
   return (
-    <button className="reset" onClick={props.onClick}>
+    <button className="panel-button" onClick={props.onClick}>
       Reset Grid
     </button>
   );
@@ -29,7 +29,7 @@ function ResetButton(props) {
 
 function DownloadButton(props) {
   return (
-    <button className="reset" onClick={props.onClick}>
+    <button className="panel-button" onClick={props.onClick}>
       Download
     </button>
   );
@@ -122,10 +122,10 @@ class Picker extends React.Component {
   render() {
     return (
       <div className="picker">
-        <div>
-        <OutputField coordinates={this.getSelected()} />
-        <DownloadButton onClick={() => this.downloadFile()} />
-        <ResetButton onClick={() => this.resetGrid()}/>
+        <div className="panel">
+          <OutputField coordinates={this.getSelected()} />
+          <DownloadButton onClick={() => this.downloadFile()} />
+          <ResetButton onClick={() => this.resetGrid()}/>
         </div>
         {this.renderGrid()}
       </div>
