@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 
+import Voxel from './voxel';
+
 function App() {
   return (
     <div className="App">
@@ -9,7 +11,7 @@ function App() {
   );
 }
 
-function Voxel(props) {
+function VoxelButton(props) {
   return (
     <button className="voxel" id={props.selected ? "selected" : null} onClick={props.onClick}>
       ({ props.x + ', ' + props.y})
@@ -138,7 +140,7 @@ class Picker extends React.Component {
 
   renderVoxel(voxObj) {
     return (
-      <Voxel
+      <VoxelButton
         x={voxObj.x}
         y={voxObj.y}
         selected={voxObj.selected}
