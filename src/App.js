@@ -99,21 +99,20 @@ class Picker extends React.Component {
 
   handleClick(voxObj) {
     const voxels = this.state.voxels.slice();
-    for (var i = 0; i < voxels.length; i++) {
-      for (var j = 0; j < voxels[i].length; j++) {
-        var curVox = voxels[i][j]
+    voxels.forEach((row) => {
+      row.forEach((curVox) => {
         if (curVox.equals(voxObj)) {
           curVox.toggleStatus();
         }
-      }
-    }
+      })
+    })
     this.setState({ voxels: voxels });
   }
 
   resetGrid() {
     const voxels = this.state.voxels;
-    voxels.forEach(function(row) {
-      row.forEach(function(voxel) {
+    voxels.forEach((row) => {
+      row.forEach((voxel) => {
         voxel.selected = false;
       });
     });
