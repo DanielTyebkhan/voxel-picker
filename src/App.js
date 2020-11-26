@@ -74,9 +74,17 @@ class Picker extends React.Component {
   }
 
   downloadFile() {
-    console.log(this.getSelected());
-    //const blob = new Blob(this.getSelected.toString());
+    let coordinates = '';
+    this.getSelected().forEach((voxel) => {
+      coordinates += voxel.x + ',' + voxel.y + '\n';
+    });
 
+    const element = document.createElement('a');
+    const file = new Blob([coordinates], {type: 'text.plain'});
+    element.href = URL.createObjectURL(file);
+    element.download = 'file.txt';
+    document.body.appendChild(element);
+    element.click();
   }
 
   componentDidMount() {
