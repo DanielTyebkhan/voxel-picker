@@ -87,12 +87,7 @@ class Picker extends React.Component {
       var row = [];
       var xVal = 0;
       for (var j = 0; j < size; j++) {
-        const cell = {
-          x: xVal,
-          y: yVal,
-          id: xVal,
-          selected: false,
-        }
+        const cell = new Voxel(xVal,yVal)
         row.push(cell);
         xVal += 1;
       }
@@ -107,8 +102,8 @@ class Picker extends React.Component {
     for (var i = 0; i < voxels.length; i++) {
       for (var j = 0; j < voxels[i].length; j++) {
         var curVox = voxels[i][j]
-        if (curVox === voxObj) {
-          curVox.selected = !curVox.selected;
+        if (curVox.equals(voxObj)) {
+          curVox.toggleStatus();
         }
       }
     }
