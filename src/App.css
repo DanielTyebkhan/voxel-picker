@@ -37,8 +37,10 @@
 }
 
 .panel-button {
+  min-height: 1.7rem;
   min-width: 7.5rem;
   max-width: 7.5rem;
+  border: 2px solid #1036cf;
 }
 
 .picker {
